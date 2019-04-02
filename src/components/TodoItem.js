@@ -1,5 +1,9 @@
 import React from 'react';
-import { Circle, CheckCircle, MinusCircle } from 'react-feather';
+import {
+  Circle,
+  CheckCircle,
+  MinusCircle
+} from 'react-feather';
 import styled, { css } from 'styled-components';
 
 const Item = styled.div`
@@ -22,7 +26,8 @@ const Item = styled.div`
     right: 0;
     top: 0;
     transition: 0.8s;
-    transform: ${p => (p.completed ? 'none' : 'translateX(100%)')};
+    transform: ${p =>
+      p.completed ? 'none' : 'translateX(100%)'};
   }
 `;
 const Text = styled.span`
@@ -94,7 +99,12 @@ const RemoveButton = styled.button`
   }
 `;
 
-const TodoItem = ({ completed, onClick, onClickRemove, ...props }) => (
+const TodoItem = ({
+  completed,
+  onClick,
+  onClickRemove,
+  ...props
+}) => (
   <Item completed={completed}>
     <Button onClick={onClick}>
       <Checkbox checked={completed} />

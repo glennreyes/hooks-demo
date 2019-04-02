@@ -1,7 +1,11 @@
 import React from 'react';
 // import React, { useRef } from 'react';
 import { ThemeProvider } from 'styled-components';
-import { useWindowSize, useHidden, useDarkMode } from '../hooks';
+import {
+  useWindowSize,
+  useHidden,
+  useDarkMode
+} from '../hooks';
 import Container from './Container';
 import ThemeSwitch from './ThemeSwitch';
 import Dimensions from './Dimensions';
@@ -21,7 +25,11 @@ const App = () => {
     todos: [
       { text: 'Buy milk', id: 1, completed: true },
       { text: 'Get breakfast', id: 2, completed: false },
-      { text: 'Prepare presentation', id: 3, completed: false }
+      {
+        text: 'Prepare presentation',
+        id: 3,
+        completed: false
+      }
     ],
     text: ''
   };
@@ -55,7 +63,11 @@ const App = () => {
             }}
             indent={todos.length > 0}
           >
-            <Input type="text" value={text} onChange={() => {}} />
+            <Input
+              type="text"
+              value={text}
+              onChange={() => {}}
+            />
             <AddButton onClick={() => {}} />
           </Form>
         </TodoList>

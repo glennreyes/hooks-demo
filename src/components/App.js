@@ -32,7 +32,7 @@ const App = () => {
   // ???
   // What we want here is to keep focus when hitting
   // the add button
-  const inputElement = { current: null, focus: () => {} };
+  const inputElement = useRef(null);
 
   return (
     <ThemeProvider theme={{ darkMode }}>
@@ -64,6 +64,7 @@ const App = () => {
             indent={todos.length > 0}
           >
             <Input
+              ref={inputElement}
               type="text"
               value={text}
               onChange={event =>

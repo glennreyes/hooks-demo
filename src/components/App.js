@@ -1,6 +1,7 @@
-import React, { useRef } from 'react';
+import React from 'react';
+// import React, { useRef } from 'react';
 import { ThemeProvider } from 'styled-components';
-import { useWindowSize, useHidden, useDarkMode, useTodo } from '../hooks';
+// import { useWindowSize, useHidden, useDarkMode, useTodo } from '../hooks';
 import Container from './Container';
 import ThemeSwitch from './ThemeSwitch';
 import Dimensions from './Dimensions';
@@ -12,11 +13,21 @@ import Input from './Input';
 import AddButton from './AddButton';
 
 const App = () => {
-  const size = useWindowSize();
-  const hidden = useHidden(5000, [size.width, size.height]);
-  const { darkMode, toggleDarkMode } = useDarkMode();
-  const { todos, text, setText, add, remove, toggle } = useTodo();
-  const inputElement = useRef(null);
+  const size = { width: 0, height: 0 };
+  const hidden = false;
+  const { darkMode, toggleDarkMode } = {
+    darkMode: false,
+    toggleDarkMode: () => {}
+  };
+  const { todos, text, setText, add, remove, toggle } = {
+    todos: [],
+    text: '',
+    setText: () => {},
+    add: () => {},
+    remove: () => {},
+    toggle: () => {}
+  };
+  const inputElement = { current: null };
 
   return (
     <ThemeProvider theme={{ darkMode }}>

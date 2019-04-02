@@ -27,7 +27,7 @@ const App = () => {
   };
 
   return (
-    <ThemeProvider ceneted theme={{ darkMode }}>
+    <ThemeProvider theme={{ darkMode }}>
       <Container>
         <ThemeSwitch onClick={toggleDarkMode} />
         <Dimensions centered big show={!hidden}>

@@ -6,9 +6,9 @@ Example using some of the common React Hooks.
 
 It includes following cases:
 
-- [ ] Dark mode & persist (useState)
-- [ ] Window Size (useState, useEffect)
-- [ ] Hide on delay (useState, useEffect)
-- [ ] Input text & persist (useState/Custom hook)
-- [ ] Todo list & persist (useReducer)
-- [ ] Keep input focus (useRef)
+- [ ] Dark mode & persist (`useState`)
+- [ ] Window Size (`useState`, `useEffect`)
+- [ ] Hide on delay (`useState`, `useEffect`)
+- [ ] Input text & persist (`useState`/Custom hook)
+- [ ] Todo list & persist (`useReducer`)
+- [ ] Keep input focus (`useRef`)

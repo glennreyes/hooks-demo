@@ -7,11 +7,11 @@ import Dimensions from './Dimensions';
 const App = () => {
   const size = { width: 0, height: 0 };
 
-  const hidden = false;
   const { darkMode, toggleDarkMode } = {
     darkMode: false,
     toggleDarkMode: () => {}
   };
+  const hidden = false;
 
   return (
     <ThemeProvider theme={{ darkMode }}>

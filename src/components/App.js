@@ -4,7 +4,7 @@ import Container from './Container';
 import ThemeSwitch from './ThemeSwitch';
 import Dimensions from './Dimensions';
 
-const App = () => {
+const useWindowSize = () => {
   const [size, setSize] = useState({
     width: window.innerWidth,
     height: window.innerHeight
@@ -18,6 +18,12 @@ const App = () => {
 
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  return size;
+};
+
+const App = () => {
+  const size = useWindowSize();
 
   const { darkMode, toggleDarkMode } = {
     darkMode: false,

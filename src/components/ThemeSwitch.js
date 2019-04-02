@@ -3,7 +3,8 @@ import { Check, Moon } from 'react-feather';
 import styled from 'styled-components';
 
 const Button = styled.button`
-  background: ${p => (p.theme.darkMode ? '#2959bb' : '#f0f0f0')};
+  background: ${p =>
+    p.theme.darkMode ? '#2959bb' : '#f0f0f0'};
   border-radius: 16px;
   height: 32px;
   opacity: 0.75;
@@ -56,7 +57,9 @@ const StyledCheck = styled(Check)`
   top: 0;
   left: 0;
   transform: ${p =>
-    p.theme.darkMode ? 'scale(0.75)' : 'scaleY(0.5) scaleX(0) rotate(-30deg)'};
+    p.theme.darkMode
+      ? 'scale(0.75)'
+      : 'scaleY(0.5) scaleX(0) rotate(-30deg)'};
   transition: 0.4s;
 `;
 

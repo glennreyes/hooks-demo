@@ -11,12 +11,16 @@ const useWindowSize = () => {
   });
 
   const handleResize = () =>
-    setSize({ width: window.innerWidth, height: window.innerHeight });
+    setSize({
+      width: window.innerWidth,
+      height: window.innerHeight
+    });
 
   useEffect(() => {
     window.addEventListener('resize', handleResize);
 
-    return () => window.removeEventListener('resize', handleResize);
+    return () =>
+      window.removeEventListener('resize', handleResize);
   }, []);
 
   return size;

@@ -1,4 +1,29 @@
 import React, { useEffect, useReducer, useState } from 'react';
+import { ThemeProvider } from 'styled-components';
+import Container from './Container';
+import ThemeSwitch from './ThemeSwitch';
+import Dimensions from './Dimensions';
+import TodoList from './TodoList';
+import TodoItem from './TodoItem';
+import Form from './Form';
+import Input from './Input';
+import AddButton from './AddButton';
+
+const useHidden = (timeout = 5000, dependencies) => {
+  const [hidden, setHidden] = useState(true);
+
+  useEffect(() => {
+    setHidden(false);
+
+    const t = setTimeout(() => {
+      setHidden(true);
+    }, timeout);
+
+    return () => clearTimeout(t);
+  }, dependencies);
+
+  return hidden;
+};
 
 const useWindowSize = () => {
   const [size, setSize] = useState({
@@ -75,8 +100,10 @@ const useTodo = (initialState = []) => {
   }, [todos]);
 
   const add = () => {
-    dispatch({ type: 'ADD', text });
-    setText('');
+    if (text) {
+      dispatch({ type: 'ADD', text });
+      setText('');
+    }
   };
 
   const remove = id => {
@@ -108,37 +135,44 @@ const useDarkMode = (initialState = false) => {
 
 const App = () => {
   const size = useWindowSize();
+  const hidden = useHidden(5000, [size.width, size.height]);
   const { darkMode, toggleDarkMode } = useDarkMode();
   const { todos, text, setText, add, remove, toggle } = useTodo();
 
   return (
-    <div>
-      <label>
-        Dark Mode
-        <input type="checkbox" onChange={toggleDarkMode} checked={darkMode} />
-      </label>
-      <p>
-        {size.width}x{size.height}
-      </p>
-      <div>
-        {todos.map(todo => (
-          <div key={todo.id}>
-            <button onClick={() => toggle(todo.id)}>
-              {todo.completed ? <strike>{todo.text}</strike> : todo.text}
-            </button>
-            <button onClick={() => remove(todo.id)}>-</button>
-          </div>
-        ))}
-        <div>
-          <input
-            type="text"
-            value={text}
-            onChange={event => setText(event.target.value)}
-          />
-          <button onClick={() => add(text)}>+</button>
-        </div>
-      </div>
-    </div>
+    <ThemeProvider theme={{ darkMode }}>
+      <Container>
+        <ThemeSwitch onClick={toggleDarkMode} />
+        <Dimensions show={!hidden}>
+          {size.width}x{size.height}
+        </Dimensions>
+        <TodoList title="My tasks">
+          {todos.map(todo => (
+            <TodoItem
+              key={todo.id}
+              completed={todo.completed}
+              onClick={() => toggle(todo.id)}
+              onClickRemove={() => remove(todo.id)}
+            >
+              {todo.text}
+            </TodoItem>
+          ))}
+          <Form
+            onSubmit={event => {
+              event.preventDefault();
+              add(text);
+            }}
+          >
+            <Input
+              type="text"
+              value={text}
+              onChange={event => setText(event.target.value)}
+            />
+            <AddButton />
+          </Form>
+        </TodoList>
+      </Container>
+    </ThemeProvider>
   );
 };
 

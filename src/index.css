@@ -13,7 +13,21 @@ code {
     monospace;
 }
 
+html,
+body,
+#root {
+  height: 100%;
+}
+
 button,
 input {
-  font-family: inherit;
+  background: none;
+  border: none;
+  line-height: 1;
+  outline: none;
+  padding: 0;
+}
+
+button {
+  cursor: pointer;
 }

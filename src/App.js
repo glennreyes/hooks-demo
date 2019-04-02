@@ -1,8 +1,9 @@
-import React, { useEffect, useReducer, useState } from 'react';
+import React, { useEffect, useReducer, useRef, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import Container from './Container';
 import ThemeSwitch from './ThemeSwitch';
 import Dimensions from './Dimensions';
+import EmptyText from './EmptyText';
 import TodoList from './TodoList';
 import TodoItem from './TodoItem';
 import Form from './Form';
@@ -94,9 +95,7 @@ const useTodo = (initialState = []) => {
   }, storedValue);
 
   useEffect(() => {
-    if (todos.length) {
-      setStoredValue(todos);
-    }
+    setStoredValue(todos);
   }, [todos]);
 
   const add = () => {
@@ -138,6 +137,7 @@ const App = () => {
   const hidden = useHidden(5000, [size.width, size.height]);
   const { darkMode, toggleDarkMode } = useDarkMode();
   const { todos, text, setText, add, remove, toggle } = useTodo();
+  const inputElement = useRef(null);
 
   return (
     <ThemeProvider theme={{ darkMode }}>
@@ -147,16 +147,20 @@ const App = () => {
           {size.width}x{size.height}
         </Dimensions>
         <TodoList title="My tasks">
-          {todos.map(todo => (
-            <TodoItem
-              key={todo.id}
-              completed={todo.completed}
-              onClick={() => toggle(todo.id)}
-              onClickRemove={() => remove(todo.id)}
-            >
-              {todo.text}
-            </TodoItem>
-          ))}
+          {todos.length ? (
+            todos.map(todo => (
+              <TodoItem
+                key={todo.id}
+                completed={todo.completed}
+                onClick={() => toggle(todo.id)}
+                onClickRemove={() => remove(todo.id)}
+              >
+                {todo.text}
+              </TodoItem>
+            ))
+          ) : (
+            <EmptyText>Nothing there.</EmptyText>
+          )}
           <Form
             onSubmit={event => {
               event.preventDefault();
@@ -164,11 +168,16 @@ const App = () => {
             }}
           >
             <Input
+              ref={inputElement}
               type="text"
               value={text}
               onChange={event => setText(event.target.value)}
             />
-            <AddButton />
+            <AddButton
+              onClick={() => {
+                inputElement.current.focus();
+              }}
+            />
           </Form>
         </TodoList>
       </Container>

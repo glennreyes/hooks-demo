@@ -21,18 +21,16 @@ const App = () => {
   const size = useWindowSize();
   const hidden = useHidden(3000, [size.width, size.height]);
 
-  const { todos, text } = {
-    todos: [
-      { text: 'Buy milk', id: 1, completed: true },
-      { text: 'Get breakfast', id: 2, completed: false },
-      {
-        text: 'Prepare presentation',
-        id: 3,
-        completed: false
-      }
-    ],
-    text: ''
-  };
+  const todos = [
+    { text: 'Buy milk', id: 1, completed: true },
+    { text: 'Get breakfast', id: 2, completed: false },
+    {
+      text: 'Prepare presentation',
+      id: 3,
+      completed: false
+    }
+  ];
+  const text = '';
 
   return (
     <ThemeProvider theme={{ darkMode }}>

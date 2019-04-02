@@ -5,12 +5,11 @@ import ThemeSwitch from './ThemeSwitch';
 import Dimensions from './Dimensions';
 
 const App = () => {
-  const size = { width: 0, height: 0 };
-
   const { darkMode, toggleDarkMode } = {
     darkMode: false,
     toggleDarkMode: () => {}
   };
+  const size = { width: 0, height: 0 };
   const hidden = false;
 
   return (

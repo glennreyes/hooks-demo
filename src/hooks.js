@@ -33,7 +33,8 @@ export const useWindowSize = () => {
   useEffect(() => {
     window.addEventListener('resize', handleResize);
 
-    return () => window.removeEventListener('resize', handleResize);
+    return () =>
+      window.removeEventListener('resize', handleResize);
   }, []);
 
   return size;
@@ -41,7 +42,10 @@ export const useWindowSize = () => {
 
 // Util for dark mode
 export const useDarkMode = (initialState = false) => {
-  const [darkMode, setDarkMode] = useLocalStorage('darkMode', initialState);
+  const [darkMode, setDarkMode] = useLocalStorage(
+    'darkMode',
+    initialState
+  );
   const toggleDarkMode = () => {
     setDarkMode(darkMode => !darkMode);
   };
@@ -63,9 +67,14 @@ export const useLocalStorage = (key, initialState) => {
   const setValue = value => {
     try {
       const valueToStore =
-        typeof value === 'function' ? value(storedValue) : value;
+        typeof value === 'function'
+          ? value(storedValue)
+          : value;
       setStoredValue(valueToStore);
-      localStorage.setItem(key, JSON.stringify(valueToStore));
+      localStorage.setItem(
+        key,
+        JSON.stringify(valueToStore)
+      );
     } catch (error) {
       console.log(error);
     }
@@ -76,7 +85,10 @@ export const useLocalStorage = (key, initialState) => {
 // Custom hook for todo lists
 export const useTodo = (initialState = []) => {
   const [text, setText] = useState('');
-  const [storedValue, setStoredValue] = useLocalStorage('todos', initialState);
+  const [storedValue, setStoredValue] = useLocalStorage(
+    'todos',
+    initialState
+  );
   const [todos, dispatch] = useReducer((state, action) => {
     switch (action.type) {
       case 'ADD':
@@ -91,7 +103,9 @@ export const useTodo = (initialState = []) => {
         return state.filter(todo => todo.id !== action.id);
       case 'TOGGLE':
         return state.map(todo =>
-          todo.id === action.id ? { ...todo, completed: !todo.completed } : todo
+          todo.id === action.id
+            ? { ...todo, completed: !todo.completed }
+            : todo
         );
       default:
         return state;

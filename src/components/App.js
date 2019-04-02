@@ -7,7 +7,10 @@ import { useDarkMode } from '../hooks';
 
 const App = () => {
   const { darkMode, toggleDarkMode } = useDarkMode(false);
+
+  // ???
   const size = { width: 0, height: 0 };
+
   const hidden = false;
 
   return (

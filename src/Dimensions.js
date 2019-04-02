@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
 const Dimensions = styled.div`
-  color: #fff;
+  color: ${p => (p.theme.darkMode ? '#fff' : '#000')};
   position: fixed;
   font-size: 32px;
   font-weight: bold;
   letter-spacing: 4px;
-  opacity: ${p => (p.show ? 0.5 : 0)};
+  opacity: ${p => (p.show ? 0.25 : 0)};
   pointer-events: none;
   top: 16px;
   transform: ${p => (p.show ? 'none' : 'scaleY(.5)')};

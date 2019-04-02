@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import {
   useWindowSize,
@@ -70,11 +70,7 @@ const App = () => {
                 setText(event.target.value)
               }
             />
-            <AddButton
-              onClick={() => {
-                inputElement.current.focus();
-              }}
-            />
+            <AddButton onClick={() => {}} />
           </Form>
         </TodoList>
       </Container>

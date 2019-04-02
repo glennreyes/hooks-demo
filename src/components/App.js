@@ -3,11 +3,13 @@ import { ThemeProvider } from 'styled-components';
 import Container from './Container';
 import ThemeSwitch from './ThemeSwitch';
 import Dimensions from './Dimensions';
-import { useDarkMode } from '../hooks';
+import { useDarkMode, useWindowSize } from '../hooks';
 
 const App = () => {
   const { darkMode, toggleDarkMode } = useDarkMode(false);
-  const size = { width: 0, height: 0 };
+  const size = useWindowSize();
+
+  // ???
   const hidden = false;
 
   return (

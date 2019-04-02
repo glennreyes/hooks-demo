@@ -9,6 +9,6 @@ It includes following cases:
 - [ ] Dark mode & persist (`useState`)
 - [ ] Window Size (`useState`, `useEffect`)
 - [ ] Hide on delay (`useState`, `useEffect`)
-- [ ] Input text & persist (`useState`/Custom hook)
+- [ ] Input text & persist (`useState`/`useLocalStorage` Custom hook)
 - [ ] Todo list & persist (`useReducer`)
 - [ ] Keep input focus (`useRef`)

@@ -1,13 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
 import Container from './Container';
 import ThemeSwitch from './ThemeSwitch';
 import Dimensions from './Dimensions';
 import { useDarkMode } from '../hooks';
 
+const useWindowSize = () => {
+  const [size, setSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight
+  });
+
+  const handleResize = () =>
+    setSize({
+      width: window.innerWidth,
+      height: window.innerHeight
+    });
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+
+    return () =>
+      window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return size;
+};
+
 const App = () => {
   const { darkMode, toggleDarkMode } = useDarkMode(false);
-  const size = { width: 0, height: 0 };
+  const size = useWindowSize();
   const hidden = false;
 
   return (

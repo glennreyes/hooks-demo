@@ -14,8 +14,8 @@ import AddButton from './AddButton';
 
 const App = () => {
   const size = useWindowSize();
-  const hidden = useHidden(3000, [size.width, size.height]);
   const { darkMode, toggleDarkMode } = useDarkMode(false);
+  const hidden = useHidden(3000, [size.width, size.height]);
 
   const { todos, text } = {
     todos: [

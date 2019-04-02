@@ -13,8 +13,8 @@ import AddButton from './AddButton';
 
 const App = () => {
   const size = useWindowSize();
-  const hidden = useHidden(5000, [size.width, size.height]);
   const { darkMode, toggleDarkMode } = useDarkMode();
+  const hidden = useHidden(5000, [size.width, size.height]);
   const { todos, text, setText, add, remove, toggle } = useTodo();
   const inputElement = useRef(null);
 

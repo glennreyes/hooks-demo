@@ -20,7 +20,11 @@ const App = () => {
     toggleDarkMode: () => {}
   };
   const { todos, text, setText, add, remove, toggle } = {
-    todos: [],
+    todos: [
+      { text: 'Buy milk', id: 1, completed: true },
+      { text: 'Get breakfast', id: 2, completed: false },
+      { text: 'Prepare presentation', id: 3, completed: false }
+    ],
     text: '',
     setText: () => {},
     add: () => {},

@@ -6,6 +6,7 @@ import Dimensions from './Dimensions';
 
 const App = () => {
   const size = { width: 0, height: 0 };
+
   const hidden = false;
   const { darkMode, toggleDarkMode } = {
     darkMode: false,
@@ -15,10 +16,10 @@ const App = () => {
   return (
     <ThemeProvider theme={{ darkMode }}>
       <Container>
-        <ThemeSwitch onClick={toggleDarkMode} />
         <Dimensions centered big show={!hidden}>
           {size.width}x{size.height}
         </Dimensions>
+        <ThemeSwitch onClick={toggleDarkMode} />
       </Container>
     </ThemeProvider>
   );

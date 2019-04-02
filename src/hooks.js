@@ -84,7 +84,7 @@ export const useLocalStorage = (key, initialState) => {
 
 // Custom hook for todo lists
 export const useTodo = (initialState = []) => {
-  const [text, setText] = useState('');
+  const [text, setText] = useLocalStorage('text', '');
   const [storedValue, setStoredValue] = useLocalStorage(
     'todos',
     initialState

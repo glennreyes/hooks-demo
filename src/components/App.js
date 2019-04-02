@@ -27,10 +27,9 @@ const useWindowSize = () => {
 };
 
 const App = () => {
-  const { darkMode, toggleDarkMode } = {
-    darkMode: false,
-    toggleDarkMode: () => {}
-  };
+  const darkMode = false; // ???
+  const toggleDarkMode = () => {}; // ???
+
   const size = useWindowSize();
   const hidden = false;
 

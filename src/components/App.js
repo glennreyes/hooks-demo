@@ -1,6 +1,11 @@
 import React, { useRef } from 'react';
 import { ThemeProvider } from 'styled-components';
-import { useWindowSize, useHidden, useDarkMode, useTodo } from '../hooks';
+import {
+  useWindowSize,
+  useHidden,
+  useDarkMode,
+  useTodo
+} from '../hooks';
 import Container from './Container';
 import ThemeSwitch from './ThemeSwitch';
 import Dimensions from './Dimensions';
@@ -15,7 +20,14 @@ const App = () => {
   const size = useWindowSize();
   const { darkMode, toggleDarkMode } = useDarkMode();
   const hidden = useHidden(5000, [size.width, size.height]);
-  const { todos, text, setText, add, remove, toggle } = useTodo();
+  const {
+    todos,
+    text,
+    setText,
+    add,
+    remove,
+    toggle
+  } = useTodo();
   const inputElement = useRef(null);
 
   return (
@@ -51,7 +63,9 @@ const App = () => {
               ref={inputElement}
               type="text"
               value={text}
-              onChange={event => setText(event.target.value)}
+              onChange={event =>
+                setText(event.target.value)
+              }
             />
             <AddButton
               onClick={() => {

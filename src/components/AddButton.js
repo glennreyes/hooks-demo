@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import Container from './Container';
 
 const Button = styled.button`
-  background: ${p => (p.theme.darkMode ? '#2959bb' : '#000')};
+  background: ${p =>
+    p.theme.darkMode ? '#2959bb' : '#000'};
   border-radius: 50%;
   opacity: 0;
   padding: 0;

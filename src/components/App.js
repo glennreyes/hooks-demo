@@ -27,13 +27,12 @@ const useWindowSize = () => {
 };
 
 const App = () => {
-  const size = useWindowSize();
-
-  const hidden = false;
   const { darkMode, toggleDarkMode } = {
     darkMode: false,
     toggleDarkMode: () => {}
   };
+  const size = useWindowSize();
+  const hidden = false;
 
   return (
     <ThemeProvider theme={{ darkMode }}>

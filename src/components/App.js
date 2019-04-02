@@ -17,8 +17,8 @@ import Input from './Input';
 import AddButton from './AddButton';
 
 const App = () => {
-  const size = useWindowSize();
   const { darkMode, toggleDarkMode } = useDarkMode();
+  const size = useWindowSize();
   const hidden = useHidden(5000, [size.width, size.height]);
   const {
     todos,

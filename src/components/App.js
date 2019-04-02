@@ -26,7 +26,7 @@ const App = () => {
           {size.width}x{size.height}
         </Dimensions>
         <TodoList title="My tasks">
-          {todos.length ? (
+          {todos.length > 0 ? (
             todos.map(todo => (
               <TodoItem
                 key={todo.id}
@@ -45,6 +45,7 @@ const App = () => {
               event.preventDefault();
               add(text);
             }}
+            indent={todos.length > 0}
           >
             <Input
               ref={inputElement}

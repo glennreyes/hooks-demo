@@ -16,6 +16,7 @@ const App = () => {
   const size = useWindowSize();
   const hidden = useHidden(3000, [size.width, size.height]);
   const { darkMode, toggleDarkMode } = useDarkMode(false);
+
   const { todos, text } = {
     todos: [
       { text: 'Buy milk', id: 1, completed: true },

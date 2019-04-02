@@ -21,9 +21,9 @@ const App = () => {
   const size = useWindowSize();
   const hidden = useHidden(5000, [size.width, size.height]);
   const {
-    todos,
     text,
     setText,
+    todos,
     add,
     remove,
     toggle

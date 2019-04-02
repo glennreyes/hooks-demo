@@ -1,5 +1,4 @@
 import React from 'react';
-// import React, { useRef } from 'react';
 import { ThemeProvider } from 'styled-components';
 import {
   useWindowSize,

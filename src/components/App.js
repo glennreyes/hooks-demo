@@ -19,7 +19,7 @@ import AddButton from './AddButton';
 const App = () => {
   const { darkMode, toggleDarkMode } = useDarkMode(false);
   const size = useWindowSize();
-  const hidden = useHidden(3000, [size.width, size.height]);
+  const hidden = useHidden(1000, [size.width, size.height]);
 
   const [text, setText] = useLocalStorage('text', '');
 

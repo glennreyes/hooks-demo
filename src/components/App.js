@@ -4,34 +4,16 @@ import Container from './Container';
 import ThemeSwitch from './ThemeSwitch';
 import Dimensions from './Dimensions';
 
-const useWindowSize = () => {
-  const [size, setSize] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight
-  });
+const useDarkMode = initialState => {
+  const [darkMode, setDarkMode] = useState(initialState);
+  const toggleDarkMode = () => setDarkMode(state => !state);
 
-  const handleResize = () =>
-    setSize({
-      width: window.innerWidth,
-      height: window.innerHeight
-    });
-
-  useEffect(() => {
-    window.addEventListener('resize', handleResize);
-
-    return () =>
-      window.removeEventListener('resize', handleResize);
-  }, []);
-
-  return size;
+  return { darkMode, toggleDarkMode };
 };
 
 const App = () => {
-  const { darkMode, toggleDarkMode } = {
-    darkMode: false,
-    toggleDarkMode: () => {}
-  };
-  const size = useWindowSize();
+  const { darkMode, toggleDarkMode } = useDarkMode(true);
+  const size = { width: 0, height: 0 };
   const hidden = false;
 
   return (

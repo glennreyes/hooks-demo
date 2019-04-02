@@ -22,6 +22,8 @@ const App = () => {
   const hidden = useHidden(3000, [size.width, size.height]);
 
   const [text, setText] = useLocalStorage('text', '');
+
+  // ???
   const todos = [
     { text: 'Buy milk', id: 1, completed: true },
     { text: 'Get breakfast', id: 2, completed: false },

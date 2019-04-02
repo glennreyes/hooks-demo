@@ -19,11 +19,11 @@ const App = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const hidden = false;
   const { darkMode, toggleDarkMode } = {
     darkMode: false,
     toggleDarkMode: () => {}
   };
+  const hidden = false;
 
   return (
     <ThemeProvider theme={{ darkMode }}>

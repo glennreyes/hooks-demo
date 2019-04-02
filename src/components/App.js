@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useReducer } from 'react';
 import { ThemeProvider } from 'styled-components';
 import {
   useWindowSize,
@@ -16,21 +16,57 @@ import Form from './Form';
 import Input from './Input';
 import AddButton from './AddButton';
 
+const useTodo = (initialState = []) => {
+  const [text, setText] = useLocalStorage('text', '');
+  const [storedValue, setStoredValue] = useLocalStorage(
+    'todos',
+    initialState
+  );
+  const [todos, dispatch] = useReducer((state, action) => {
+    switch (action.type) {
+      case 'ADD':
+        return [
+          ...state,
+          { id: Date.now(), text: action.text }
+        ];
+      case 'REMOVE':
+        return state.filter(todo => todo.id !== action.id);
+
+      case 'TOGGLE':
+        return state.map(todo =>
+          todo.id === action.id
+            ? {
+                ...todo,
+                completed: !todo.completed
+              }
+            : todo
+        );
+      default:
+        return state;
+    }
+  }, storedValue);
+
+  useEffect(() => setStoredValue(todos), [todos]);
+
+  const add = text => dispatch({ type: 'ADD', text });
+  const remove = id => dispatch({ type: 'REMOVE', id });
+  const toggle = id => dispatch({ type: 'TOGGLE', id });
+
+  return { text, setText, todos, add, remove, toggle };
+};
+
 const App = () => {
   const { darkMode, toggleDarkMode } = useDarkMode(false);
   const size = useWindowSize();
   const hidden = useHidden(3000, [size.width, size.height]);
-
-  const [text, setText] = useLocalStorage('text', '');
-  const todos = [
-    { text: 'Buy milk', id: 1, completed: true },
-    { text: 'Get breakfast', id: 2, completed: false },
-    {
-      text: 'Prepare presentation',
-      id: 3,
-      completed: false
-    }
-  ];
+  const {
+    text,
+    setText,
+    todos,
+    add,
+    remove,
+    toggle
+  } = useTodo();
 
   return (
     <ThemeProvider theme={{ darkMode }}>
@@ -46,8 +82,8 @@ const App = () => {
               <TodoItem
                 key={todo.id}
                 completed={todo.completed}
-                onClick={() => {}}
-                onClickRemove={() => {}}
+                onClick={() => toggle(todo.id)}
+                onClickRemove={() => remove(todo.id)}
               >
                 {todo.text}
               </TodoItem>
@@ -68,7 +104,12 @@ const App = () => {
                 setText(event.target.value)
               }
             />
-            <AddButton onClick={() => {}} />
+            <AddButton
+              onClick={() => {
+                add(text);
+                setText('');
+              }}
+            />
           </Form>
         </TodoList>
       </Container>

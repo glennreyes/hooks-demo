@@ -3,7 +3,8 @@ import { ThemeProvider } from 'styled-components';
 import {
   useWindowSize,
   useHidden,
-  useDarkMode
+  useDarkMode,
+  useLocalStorage
 } from '../hooks';
 import Container from './Container';
 import ThemeSwitch from './ThemeSwitch';
@@ -20,7 +21,7 @@ const App = () => {
   const size = useWindowSize();
   const hidden = useHidden(3000, [size.width, size.height]);
 
-  const text = '';
+  const [text, setText] = useLocalStorage('text', '');
   const todos = [
     { text: 'Buy milk', id: 1, completed: true },
     { text: 'Get breakfast', id: 2, completed: false },
@@ -63,7 +64,9 @@ const App = () => {
             <Input
               type="text"
               value={text}
-              onChange={() => {}}
+              onChange={event =>
+                setText(event.target.value)
+              }
             />
             <AddButton onClick={() => {}} />
           </Form>
